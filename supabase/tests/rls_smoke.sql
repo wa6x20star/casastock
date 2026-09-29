@@ -1,0 +1,8 @@
+-- Smoke-test checklist to run in a linked local Supabase instance.
+-- 1. Create two auth users and a household using create_household() as user A.
+-- 2. Assert user A can select its household_products.
+-- 3. Assert user B cannot select, insert or update user A's household rows.
+-- 4. Assert record_purchase() increments current_quantity and writes a movement.
+-- 5. Assert consume_stock() cannot make current_quantity negative.
+-- These scenarios are deliberately expressed as a checklist because auth users
+-- are created differently in hosted and local Supabase environments.

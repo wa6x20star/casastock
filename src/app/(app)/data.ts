@@ -1,0 +1,2 @@
+import { createClient } from "@/lib/supabase/server"; import { redirect } from "next/navigation";
+export async function getHousehold(){const s=await createClient();const {data:{user}}=await s.auth.getUser();const {data}=await s.from("household_members").select("household_id, households(name)").eq("user_id",user!.id).limit(1).single();if(!data)redirect("/criar-casa");return {s,id:data.household_id,name:(data.households as unknown as {name:string}).name}}

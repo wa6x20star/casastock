@@ -1,0 +1,2 @@
+import { signIn } from "@/app/auth/actions";
+export default async function Entrar({searchParams}:{searchParams:Promise<{erro?:string}>}){const {erro}=await searchParams;return <main className="shell"><a className="brand" href="/">CasaStock</a><h1>Entrar</h1>{erro&&<p className="notice danger">{erro}</p>}<form action={signIn} className="card"><label>E-mail<input name="email" type="email" required/></label><label>Senha<input name="password" type="password" required/></label><button>Entrar</button></form></main>}

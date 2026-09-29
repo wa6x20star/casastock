@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CasaStock V0.1
 
-## Getting Started
+MVP mobile-first para estoque doméstico, construído com Next.js, TypeScript e Supabase.
 
-First, run the development server:
+## Rodar localmente
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Copie `.env.example` para `.env.local` e preencha a URL e a chave publicável do projeto Supabase.
+2. Crie um projeto Supabase e aplique `supabase/migrations/202609280001_initial_schema.sql` pelo SQL Editor ou `supabase db push`.
+3. Em **Authentication > URL Configuration**, inclua `http://localhost:3000/auth/callback` (e a URL da Vercel em produção) como redirect URL.
+4. Execute `npm install` e `npm run dev`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Fluxo entregue
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Conta → casa → produto local → compra (mercado, data e preço) → saldo atualizado → consumo → painel com gasto mensal.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+As compras e consumos usam funções transacionais no banco. `product_catalog` é independente de `household_products`, deixando o catálogo comunitário separado do estoque privado. A migração também cria estruturas de listas inteligentes e CasaCoin (wallet e transações), sem qualquer fluxo de saque.
 
-## Learn More
+## Publicar na Vercel
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Importe esta pasta na Vercel e configure `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` nas variáveis de ambiente. Defina também `NEXT_PUBLIC_SITE_URL` com a URL final da aplicação para os e-mails de confirmação.

@@ -1,0 +1,2 @@
+import { signUp } from "@/app/auth/actions";
+export default async function Cadastro({searchParams}:{searchParams:Promise<{erro?:string}>}){const {erro}=await searchParams;return <main className="shell"><a className="brand" href="/">CasaStock</a><h1>Crie sua conta</h1>{erro&&<p className="notice danger">{erro}</p>}<form action={signUp} className="card"><label>E-mail<input name="email" type="email" required/></label><label>Senha<input name="password" type="password" minLength={8} required/></label><button>Criar conta</button></form></main>}
